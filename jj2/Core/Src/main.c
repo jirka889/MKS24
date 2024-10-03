@@ -114,12 +114,13 @@ int main(void)
 	      LL_mDelay(200);  // Trvání signálu
 	      */
 	  uint32_t morseSOS = 0b101010000011101011100000111010;  // Sekvence pro "SOS"
-	  for (int i = 31; i >= 0; i--) {
-	      if ((morseSOS >> i) & 1) {
+	  for (uint32_t i = 0; i < 32; i++) {
+	      if (morseSOS & (1UL<<31)) {
 	          LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);  // Zapnout LED
 	      } else {
 	          LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);  // Vypnout LED
 	      }
+	      morseSOS = morseSOS << 1;
 	      LL_mDelay(200);  // Trvání signálu
 	  }
     /* USER CODE END WHILE */
