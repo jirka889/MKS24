@@ -137,14 +137,14 @@ int main(void)
 		/* USER CODE BEGIN 3 */
 
 		// Čteme teplotu z DS18B20, pokud jsme v DS18B20 stavu
-		if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == GPIO_PIN_RESET){
+		/*if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == GPIO_PIN_RESET){
 			displayState = DS18B20_STATE;
 
 		}
-		if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == GPIO_PIN_RESET){
+		else if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == GPIO_PIN_RESET){
 			displayState == NTC_STATE;
 
-		}
+		}*/
 
 
 		if (displayState == DS18B20_STATE) {
@@ -171,12 +171,12 @@ int main(void)
 			HAL_GPIO_WritePin(LEDE1_GPIO_Port, LEDE1_Pin, GPIO_PIN_SET);    // LED1 rozsvíceno
 		}
 
-		/* Kontrola tlačítek S1 a S2 pro přepnutí mezi senzory
+		// Kontrola tlačítek S1 a S2 pro přepnutí mezi senzory
 	    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_1) == GPIO_PIN_RESET) {  // S1 stisknuto
 	        displayState = DS18B20_STATE;
 	    } else if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_0) == GPIO_PIN_RESET) {  // S2 stisknuto
 	        displayState = NTC_STATE;
-	    }*/
+	    }
 		tick=HAL_GetTick();
 
 
